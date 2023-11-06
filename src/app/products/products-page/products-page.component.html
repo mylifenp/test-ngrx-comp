@@ -1,0 +1,28 @@
+<li *ngFor="let product of products$ | async">
+  {{ product.id }}{{ product.name }}
+  <button (click)="deleteProduct(product.id)">Delete</button>
+  <button (click)="editProduct(product)">Edit</button>
+</li>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <p>
+    <label for="name">Name</label>
+    <input type="text" id="name" name="name" formControlName="name" />
+  </p>
+  <p>
+    <label for="category">Category</label>
+    <input
+      type="text"
+      id="category"
+      name="category"
+      formControlName="category"
+    />
+  </p>
+  <p>
+    <ng-container *ngIf="edit"
+      ><button type="button" (click)="updateProduct()">
+        Save
+      </button></ng-container
+    >
+    <button type="submit">Add Product</button>
+  </p>
+</form>
